@@ -1,5 +1,74 @@
-<div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
+
+<!-- Jumbotron -->
+<div class="jumbotron text-center">
+
+  <!-- Title -->
+  <h2 class="card-title h2">Material Design for Bootstrap</h2>
+  <!-- Subtitle -->
+  <p class="blue-text my-4 font-weight-bold">Powerful and free Material Design UI KIT</p>
+
+  <!-- Grid row -->
+  <div class="row d-flex justify-content-center">
+
+    <!-- Grid column -->
+    <div class="col-xl-7 pb-2">
+
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga aliquid dolorem ea distinctio exercitationem delectus qui, quas eum architecto, amet quasi accusantium, fugit consequatur ducimus obcaecati numquam molestias hic itaque accusantium doloremque laudantium, totam rem aperiam.</p>
+
+    </div>
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+
+  <hr class="my-4">
+
+  <div class="pt-2">
+    <button mdbBtn type="button" gradient="peach" size="lg" class="waves-light text-white" mdbWavesEffect>Login</button>
+    <button mdbBtn type="button" gradient="purple" size="lg" class="waves-light text-white" data-toggle="registerModal" data-target="#registerModal"
+  (click)="registerDialog.show()" mdbWavesEffect>Register</button>
+  </div>
+
+</div>
+
+<!-- Jumbotron -->
+<div mdbModal #registerDialog="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Registration</h4>
+        <button type="button" class="close" data-dismiss="registerModal" aria-label="Close" (click)="registerDialog.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body mx-3">
+
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="orangeForm-name" class="form-control validate" [formControl]="signupFormModalName"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Username</label>
+        </div>
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="orangeForm-email" class="form-control validate" [formControl]="signupFormModalEmail"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="orangeForm-pass" class="form-control validate" [formControl]="signupFormModalPassword"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Password</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn type="button" gradient="purple" class="waves-light text-white" mdbWavesEffect>Register</button>
+      </div>
+    </div>
+  </div>
 </div>

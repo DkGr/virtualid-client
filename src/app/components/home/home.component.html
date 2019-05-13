@@ -47,27 +47,24 @@
 
         <div class="md-form mb-5">
           <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate" [formControl]="signupFormModalName"
-            mdbInput>
+          <input type="text" id="orangeForm-name" class="form-control validate" [formControl]="signupFormModalName" [(ngModel)]="user.username" mdbInput>
           <label data-error="wrong" data-success="right" for="orangeForm-name">Username</label>
         </div>
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="orangeForm-email" class="form-control validate" [formControl]="signupFormModalEmail"
-            mdbInput>
+          <input type="email" id="orangeForm-email" class="form-control validate" [formControl]="signupFormModalEmail" [(ngModel)]="user.email" mdbInput>
           <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
         </div>
 
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="orangeForm-pass" class="form-control validate" [formControl]="signupFormModalPassword"
-            mdbInput>
+          <input type="password" id="orangeForm-pass" class="form-control validate" [formControl]="signupFormModalPassword" [(ngModel)]="user.password" mdbInput>
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Password</label>
         </div>
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn type="button" gradient="purple" class="waves-light text-white" mdbWavesEffect>Register</button>
+        <button mdbBtn type="button" gradient="purple" class="waves-light text-white" (click)="onRegister()" mdbWavesEffect>Register</button>
       </div>
     </div>
   </div>

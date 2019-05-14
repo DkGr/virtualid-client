@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ButtonsModule, WavesModule, CollapseModule, ModalModule, TooltipModule, PopoverModule } from 'angular-bootstrap-md'
-import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
@@ -13,9 +13,8 @@ import * as openpgp from 'openpgp';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  signupFormModalName = new FormControl('', Validators.required);
-  signupFormModalEmail = new FormControl('', Validators.email);
-  signupFormModalPassword = new FormControl('', Validators.required);
+
+  registerForm: FormGroup;
 
   user: User = new User();
 
@@ -24,6 +23,23 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.registerForm = new FormGroup({
+      registerUsername: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(15), Validators.pattern('[a-z0-9]*')]),
+      registerEmail: new FormControl(null, [Validators.required, Validators.email]),
+      registerPassword: new FormControl(null, [Validators.required, Validators.minLength(8)])
+    });
+  }
+
+  get registerUsernameInput() {
+    return this.registerForm.get('registerUsername');
+  }
+
+  get registerEmailInput() {
+    return this.registerForm.get('registerEmail');
+  }
+
+  get registerPasswordInput() {
+    return this.registerForm.get('registerPassword');
   }
 
   async onRegister() {
@@ -43,15 +59,15 @@ export class HomeComponent implements OnInit {
 
     this.userService.registerUser(this.user)
       .subscribe(
-        data => this.onRegisterSuccess(data),
+        data => this.onRegisterSuccess(),
         error => this.onRegisterFailed(error)
       );
   }
 
-  onRegisterSuccess(data) {
-    console.log(data);
+  onRegisterSuccess() {
     this.generateKeysDialog.hide();
     this.user = new User();
+    this.registerForm.reset();
   }
 
   onRegisterFailed(error) {

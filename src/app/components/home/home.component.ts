@@ -5,6 +5,8 @@ import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
+import * as openpgp from 'openpgp';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,15 +19,44 @@ export class HomeComponent implements OnInit {
 
   user: User = new User();
 
+  @ViewChild('generateKeysDialog') generateKeysDialog;
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
-  onRegister() {
+  async onRegister() {
+    this.generateKeysDialog.show();
+    var options = {
+        userIds: [{
+          name: this.user.username,
+          email: "${this.user.username}@virtualid.fr"
+        }],
+        numBits: 4096,
+        passphrase: this.user.password
+    };
+
+    var keys = await openpgp.generateKey(options);
+    this.user.publicKey = keys.publicKeyArmored;
+    this.user.privateKey = keys.privateKeyArmored;
+
     this.userService.registerUser(this.user)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(
+        data => this.onRegisterSuccess(data),
+        error => this.onRegisterFailed(error)
+      );
+  }
+
+  onRegisterSuccess(data) {
+    console.log(data);
+    this.generateKeysDialog.hide();
     this.user = new User();
+  }
+
+  onRegisterFailed(error) {
+    console.log(error);
+    this.generateKeysDialog.hide();
   }
 
 }

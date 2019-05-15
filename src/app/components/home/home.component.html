@@ -18,6 +18,18 @@
           <a class="nav-link" href="#">Profile</a>
         </li>
       </ul>
+
+      <form [formGroup]="loginForm" class="form-inline">
+        <div class="md-form nav-item">
+          <input class="form-control mr-sm-2" mdbValidate type="text" id="loginUsername" formControlName="loginUsername" placeholder="Username">
+        </div>
+        <div class="md-form nav-item">
+          <input class="form-control mr-sm-2" mdbValidate type="password" id="loginPassword" formControlName="loginPassword" placeholder="Password">
+        </div>
+        <div class="md-form nav-item">
+          <button mdbBtn [disabled]="loginForm.invalid" color="indigo" gradient="peach" class="waves-light text-white" mdbWavesEffect>Login</button>
+        </div>
+      </form>
     </links>
   </mdb-navbar>
 
@@ -107,6 +119,33 @@
       <!--Header-->
       <div class="modal-header d-flex justify-content-center">
         <p class="heading text-dark">Generating cryptographic keys</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only"></span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+          <span class="sr-only"></span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div mdbModal #loggingInDialog="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" [config]="{ignoreBackdropClick: true}" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-notify" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading text-dark">Authenticating...</p>
       </div>
 
       <!--Body-->

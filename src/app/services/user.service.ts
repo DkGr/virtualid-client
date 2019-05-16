@@ -21,7 +21,7 @@ export class UserService {
       name: user.username,
       password: user.password
     }
-    return this.http.post(`${this.baseUrl}` + `/login`, userPassword);
+    return this.http.post(`${this.baseUrl}` + `/login`, userPassword)
   }
 
 }

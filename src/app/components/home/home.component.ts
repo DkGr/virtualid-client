@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ButtonsModule, WavesModule, CollapseModule, ModalModule, TooltipModule, PopoverModule } from 'angular-bootstrap-md'
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
@@ -26,9 +27,13 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('loggingInDialog') loggingInDialog;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    if(this.hasToken()){
+      this.router.navigateByUrl('/virtualidhost');
+    }
+
     this.registerForm = new FormGroup({
       registerUsername: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(15), Validators.pattern('[a-z0-9]*')]),
       registerEmail: new FormControl(null, [Validators.required, Validators.email]),
@@ -104,15 +109,37 @@ export class HomeComponent implements OnInit {
   }
 
   onLoginSuccess(data) {
-    console.log(data);
+    this.setSession(data);
     this.loggingInDialog.hide();
     this.loginUser = new User();
     this.loginForm.reset();
+    this.router.navigateByUrl('/virtualidhost');
   }
 
   onLoginFailed(error) {
     console.log(error);
     this.loggingInDialog.hide();
+  }
+
+  private setSession(authResult) {
+    localStorage.setItem('id_token', authResult.token);
+  }
+
+  logoutUser() {
+    localStorage.removeItem("id_token");
+  }
+
+  public isLoggedIn() {
+    return this.hasToken();
+  }
+
+  isLoggedOut() {
+    return !this.hasToken();
+  }
+
+  hasToken() {
+    const token = localStorage.getItem("id_token");
+    return token != null;
   }
 
 }

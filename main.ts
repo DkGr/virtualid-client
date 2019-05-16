@@ -17,6 +17,7 @@ function createWindow() {
     y: 0,
     width: size.width,
     height: size.height,
+    icon: path.join(__dirname, 'assets/images/favicon.ico'),
     webPreferences: {
       nodeIntegration: true,
     },

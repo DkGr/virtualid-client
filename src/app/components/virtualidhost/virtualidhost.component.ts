@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PopoverModule, WavesModule } from 'angular-bootstrap-md'
 
 @Component({
   selector: 'app-virtualidhost',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./virtualidhost.component.scss']
 })
 export class VirtualidhostComponent implements OnInit {
-
+  public html: string = '<span class="btn btn-danger">Your HTML here</span>';
   constructor(private router: Router) { }
 
   ngOnInit() {

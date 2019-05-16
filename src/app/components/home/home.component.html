@@ -21,13 +21,13 @@
 
       <form [formGroup]="loginForm" class="form-inline">
         <div class="md-form nav-item">
-          <input class="form-control mr-sm-2" mdbValidate type="text" id="loginUsername" formControlName="loginUsername" placeholder="Username">
+          <input class="form-control mr-sm-2" mdbValidate type="text" id="loginUsername" formControlName="loginUsername" [(ngModel)]="loginUser.username" placeholder="Username">
         </div>
         <div class="md-form nav-item">
-          <input class="form-control mr-sm-2" mdbValidate type="password" id="loginPassword" formControlName="loginPassword" placeholder="Password">
+          <input class="form-control mr-sm-2" mdbValidate type="password" id="loginPassword" formControlName="loginPassword" [(ngModel)]="loginUser.password" placeholder="Password">
         </div>
         <div class="md-form nav-item">
-          <button mdbBtn [disabled]="loginForm.invalid" color="indigo" gradient="peach" class="waves-light text-white" mdbWavesEffect>Login</button>
+          <button mdbBtn [disabled]="loginForm.invalid" color="indigo" gradient="peach" class="waves-light text-white" (click)="onLogin()" mdbWavesEffect>Login</button>
         </div>
       </form>
     </links>
@@ -69,21 +69,21 @@
                   <form [formGroup]="registerForm">
                     <div class="md-form">
                       <i class="fas fa-user prefix white-text"></i>
-                      <input mdbValidate type="text" id="registerUsername" class="form-control" formControlName="registerUsername" [(ngModel)]="user.username" mdbInput>
+                      <input mdbValidate type="text" id="registerUsername" class="form-control" formControlName="registerUsername" [(ngModel)]="registerUser.username" mdbInput>
                       <label for="registerUsername">Username</label>
                       <mdb-error *ngIf="registerUsernameInput.invalid && (registerUsernameInput.dirty || registerUsernameInput.touched)">Required. 5 to 15 characters. Lower case letters and numbers only.</mdb-error>
                     </div>
 
                     <div class="md-form">
                       <i class="fas fa-envelope prefix white-text"></i>
-                      <input mdbValidate type="text" id="registerEmail" class="form-control" formControlName="registerEmail" [(ngModel)]="user.email" mdbInput>
+                      <input mdbValidate type="text" id="registerEmail" class="form-control" formControlName="registerEmail" [(ngModel)]="registerUser.email" mdbInput>
                       <label for="registerEmail">Email</label>
                       <mdb-error *ngIf="registerEmailInput.invalid && (registerEmailInput.dirty || registerEmailInput.touched)">Required</mdb-error>
                     </div>
 
                     <div class="md-form">
                       <i class="fas fa-lock prefix white-text"></i>
-                      <input mdbValidate type="password" id="registerPassword" class="form-control" formControlName="registerPassword" [(ngModel)]="user.password" mdbInput>
+                      <input mdbValidate type="password" id="registerPassword" class="form-control" formControlName="registerPassword" [(ngModel)]="registerUser.password" mdbInput>
                       <label for="registerPassword">Password</label>
                       <mdb-error *ngIf="registerPasswordInput.invalid && (registerPasswordInput.dirty || registerPasswordInput.touched)">Required. 8 characters min.</mdb-error>
                     </div>

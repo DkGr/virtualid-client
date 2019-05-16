@@ -98,20 +98,21 @@ export class HomeComponent implements OnInit {
 
     this.userService.loginUser(this.loginUser)
       .subscribe(
-        data => this.onRegisterSuccess(),
-        error => this.onRegisterFailed(error)
+        data => this.onLoginSuccess(data),
+        error => this.onLoginFailed(error)
       );
   }
 
-  onRegisterSuccess() {
-    this.generateKeysDialog.hide();
-    this.user = new User();
-    this.registerForm.reset();
+  onLoginSuccess(data) {
+    console.log(data);
+    this.loggingInDialog.hide();
+    this.loginUser = new User();
+    this.loginForm.reset();
   }
 
-  onRegisterFailed(error) {
+  onLoginFailed(error) {
     console.log(error);
-    this.generateKeysDialog.hide();
+    this.loggingInDialog.hide();
   }
 
 }

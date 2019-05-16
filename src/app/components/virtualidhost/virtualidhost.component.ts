@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-virtualidhost',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VirtualidhostComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    if(!this.hasToken()){
+      this.router.navigateByUrl('');
+    }
+  }
+
+  hasToken() {
+    const token = localStorage.getItem("id_token");
+    return token != null;
   }
 
 }

@@ -2,36 +2,25 @@
 <header class="intro-header">
 
   <!--Navbar-->
-  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
-    <mdb-navbar-brand>
-      <a class="logo navbar-brand waves-light" mdbWavesEffect href="#"><strong>MDB</strong></a>
-    </mdb-navbar-brand>
-    <links>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active waves-light" mdbWavesEffect>
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link" href="#">Profile</a>
-        </li>
-      </ul>
-
-      <form [formGroup]="loginForm" class="form-inline">
-        <div class="md-form nav-item">
-          <input class="form-control mr-sm-2" mdbValidate type="text" id="loginUsername" formControlName="loginUsername" [(ngModel)]="loginUser.username" placeholder="Username">
-        </div>
-        <div class="md-form nav-item">
-          <input class="form-control mr-sm-2" mdbValidate type="password" id="loginPassword" formControlName="loginPassword" [(ngModel)]="loginUser.password" placeholder="Password">
-        </div>
-        <div class="md-form nav-item">
-          <button mdbBtn [disabled]="loginForm.invalid" color="indigo" gradient="peach" class="waves-light text-white" (click)="onLogin()" mdbWavesEffect>Login</button>
-        </div>
-      </form>
-    </links>
-  </mdb-navbar>
+  <nav class="navbar navbar-expand-lg navbar-dark black" style="height: 64px;">
+      <div class="container">
+          <a class="navbar-brand" href=""><img src="assets/images/virtualid-white.png" height="80"/></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <form [formGroup]="loginForm" class="form-inline">
+            <div class="md-form nav-item">
+              <input class="form-control mr-sm-2" mdbValidate type="text" id="loginUsername" formControlName="loginUsername" [(ngModel)]="loginUser.username" placeholder="Username">
+            </div>
+            <div class="md-form nav-item">
+              <input class="form-control mr-sm-2" mdbValidate type="password" id="loginPassword" formControlName="loginPassword" [(ngModel)]="loginUser.password" placeholder="Password">
+            </div>
+            <div class="md-form nav-item">
+              <button mdbBtn [disabled]="loginForm.invalid" color="indigo" gradient="peach" class="waves-light text-white" (click)="onLogin()" mdbWavesEffect>Login</button>
+            </div>
+          </form>
+      </div>
+  </nav>
 
   <!--Intro Section-->
   <section class="view intro-2">

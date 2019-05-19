@@ -2,12 +2,11 @@
     background: url("https://mdbootstrap.com/img/Photos/Others/img (51).jpg")no-repeat center center;
     background-size: cover;
 }
-.view {
-    margin-top: -56px;
-}
+
 .navbar {
     z-index: 1;
 }
+
 html,
 body,
 header,
@@ -18,7 +17,19 @@ header,
 .purple-border textarea {
     border: 1px solid #ba68c8;
 }
+
 .purple-border .form-control:focus {
     border: 1px solid #ba68c8;
     box-shadow: 0 0 0 0.2rem rgba(186, 104, 200, .25);
+}
+
+.post-date {
+  align-content: center;
+  display: grid;
+  color: #808080;
+}
+
+.post-author {
+  align-content: center;
+  margin: auto;
 }

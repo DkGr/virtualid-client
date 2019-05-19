@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PopoverModule, WavesModule } from 'angular-bootstrap-md'
+import { ButtonsModule, WavesModule, DropdownModule, PopoverModule  } from 'angular-bootstrap-md'
+
+import { Post } from '../../models/post';
 
 @Component({
   selector: 'app-virtualidhost',
@@ -9,6 +11,9 @@ import { PopoverModule, WavesModule } from 'angular-bootstrap-md'
 })
 export class VirtualidhostComponent implements OnInit {
   public html: string = '<span class="btn btn-danger">Your HTML here</span>';
+
+  newPost: Post = new Post()
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -20,6 +25,14 @@ export class VirtualidhostComponent implements OnInit {
   hasToken() {
     const token = localStorage.getItem("id_token");
     return token != null;
+  }
+
+  setNewPostPublic(){
+    this.newPost.visibility = 'public'
+  }
+
+  setNewPostFriends(){
+    this.newPost.visibility = 'friends'
   }
 
 }

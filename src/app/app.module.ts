@@ -3,6 +3,7 @@ import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ButtonsModule, WavesModule, DropdownModule, PopoverModule  } from 'angular-bootstrap-md'
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 

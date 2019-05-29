@@ -73,37 +73,27 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="card mb-5">
-                <div class="purple-border">
-                  <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" placeholder="Write something here..."></textarea>
-                </div>
-                <div class="card-footer">
-                  <div class="btn-group text-white" mdbDropdown>
-                    <button type="button" mdbBtn class="btn-sm purple-gradient waves-light" mdbWavesEffect><mdb-icon fas class="mr-1" icon="{{newPost.visibility === 'friends' ? 'user-friends' : 'globe-europe'}}"></mdb-icon>Publish</button>
-                    <button type="button" mdbDropdownToggle mdbBtn class="btn-sm purple-gradient dropdown-toggle dropdown-toggle-split px-3 waves-light"
-                      style="background: linear-gradient(40deg, #ab73f5, #7873f5) !important;" mdbWavesEffect></button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" (click)="setNewPostPublic()"><mdb-icon fas class="mr-1" icon="globe-europe"></mdb-icon>Public</a>
-                      <a class="dropdown-item" (click)="setNewPostFriends()"><mdb-icon fas class="mr-1" icon="user-friends"></mdb-icon>Friends</a>
+              <form [formGroup]="sendPostForm">
+                <div class="card mb-5">
+                  <div class="purple-border">
+                    <textarea class="form-control" id="newPostContent" formControlName="newPostContent" [(ngModel)]="newPost.content" rows="3" placeholder="Write something here..."></textarea>
+                  </div>
+                  <div class="card-footer">
+                    <div class="btn-group text-white" mdbDropdown>
+                      <button type="button" [disabled]="sendPostForm.invalid" mdbBtn class="btn-sm purple-gradient waves-light" (click)="sendNewPost()" mdbWavesEffect><mdb-icon fas class="mr-1" icon="{{newPost.visibility === 'friends' ? 'user-friends' : 'globe-europe'}}"></mdb-icon>Publish</button>
+                      <button type="button" mdbDropdownToggle mdbBtn class="btn-sm purple-gradient dropdown-toggle dropdown-toggle-split px-3 waves-light"
+                        style="background: linear-gradient(40deg, #ab73f5, #7873f5) !important;" mdbWavesEffect></button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" (click)="setNewPostPublic()"><mdb-icon fas class="mr-1" icon="globe-europe"></mdb-icon>Public</a>
+                        <a class="dropdown-item" (click)="setNewPostFriends()"><mdb-icon fas class="mr-1" icon="user-friends"></mdb-icon>Friends</a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <!--<div class="text-center">
-                <div class="spinner-grow text-primary" role="status">
-                  <span class="sr-only"></span>
-                </div>
-                <div class="spinner-grow text-secondary" role="status">
-                  <span class="sr-only"></span>
-                </div>
-                <div class="spinner-grow text-danger" role="status">
-                  <span class="sr-only"></span>
-                </div>
-              </div>-->
+              </form>
 
               <!-- Section: Social news card -->
-              <section class="my-5">
+              <section *ngFor="let post of allPosts" class="my-5">
                 <!-- Card -->
                 <mdb-card class="news-card">
                   <!-- Heading-->
@@ -114,22 +104,25 @@
                         <div class="mask rgba-purple-slight"></div>
                       </div>
                       <div class="flex-grow-1 post-author">
-                        Kate
+                        {{post.author.username}}
                       </div>
-                      <div class="post-date">14 h</div>
+                      <div class="post-date">{{post.date | amTimeAgo}} </div>
+                      <mdb-icon
+                      [ngClass]="{'post-visibility-icon-friends': post.visibility === 'friends', 'post-visibility-icon-public': post.visibility === 'public'}"
+                      class="ml-1" fas icon="{{post.visibility === 'friends' ? 'user-friends' : 'globe-europe'}}"></mdb-icon>
                     </div>
                   </mdb-card-body>
                   <!-- Card image-->
-                  <mdb-card-img src="https://mdbootstrap.com/img/Photos/Others/girl1.jpg"></mdb-card-img>
+                  <!--<mdb-card-img src="https://mdbootstrap.com/img/Photos/Others/girl1.jpg"></mdb-card-img>-->
                   <!-- Card content -->
                   <mdb-card-body>
                     <!-- Social meta-->
                     <div class="social-meta">
-                      <p>Another great adventure! </p>
-                      <p class="blue-text">#awesome #bboy #battle #breaking #cool</p>
+                      <p>{{post.content}}</p>
+                      <!--<p class="blue-text">#awesome #bboy #battle #breaking #cool</p>-->
                       <div class="d-flex justify-content-between">
-                        <p><i class="fas fa-comment mr-1"></i>13 comments</p>
-                        <span><i class="far fa-heart mr-1"></i>25 likes</span>
+                        <p><i class="fas fa-comment mr-1"></i>0 comments</p>
+                        <span><i class="far fa-heart mr-1"></i>0 likes</span>
                       </div>
                     </div>
                     <hr>
@@ -143,6 +136,18 @@
                 </mdb-card>
                 <!-- Card -->
               </section>
+
+              <div [hidden]="!isLoadingPosts" class="text-center">
+                <div class="spinner-grow text-primary" role="status">
+                  <span class="sr-only"></span>
+                </div>
+                <div class="spinner-grow text-secondary" role="status">
+                  <span class="sr-only"></span>
+                </div>
+                <div class="spinner-grow text-danger" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              </div>
 
             </div>
             <!-- Section: Social news card -->

@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule, WavesModule, DropdownModule, PopoverModule  } from 'angular-bootstrap-md'
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -20,6 +20,10 @@ import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+import { MomentModule } from 'ngx-moment';
+
+import { AuthInterceptor } from './auth.interceptor';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -51,9 +55,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    MomentModule
   ],
-  providers: [ElectronService],
+  providers: [
+    ElectronService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

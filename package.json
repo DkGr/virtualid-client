@@ -90,6 +90,9 @@
     "angular-bootstrap-md": "^7.5.2",
     "chart.js": "^2.5.0",
     "hammerjs": "^2.0.8",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
+    "ngx-moment": "^3.4.0",
     "openpgp": "^4.5.1",
     "rxjs-compat": "^6.5.2"
   }

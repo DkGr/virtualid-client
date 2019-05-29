@@ -27,9 +27,25 @@ header,
   align-content: center;
   display: grid;
   color: #808080;
+  font-size: 14px;
+}
+
+.post-visibility-icon-friends {
+  align-content: center;
+  display: grid;
+  color: #00c108;
+  font-size: 14px;
+}
+
+.post-visibility-icon-public {
+  align-content: center;
+  display: grid;
+  color: #0ba2ec;
+  font-size: 14px;
 }
 
 .post-author {
   align-content: center;
   margin: auto;
+  font-size: 16px;
 }

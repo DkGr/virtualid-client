@@ -1,9 +1,10 @@
 import 'reflect-metadata';
 import '../polyfills';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ButtonsModule, WavesModule, DropdownModule, PopoverModule  } from 'angular-bootstrap-md'
+import { MDBBootstrapModule, ButtonsModule, WavesModule, DropdownModule, PopoverModule  } from 'angular-bootstrap-md'
 
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -18,8 +19,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ElectronService } from './providers/electron.service';
 
 import { WebviewDirective } from './directives/webview.directive';
-
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { MomentModule } from 'ngx-moment';
 
@@ -44,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     FormsModule,
-	  ReactiveFormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,

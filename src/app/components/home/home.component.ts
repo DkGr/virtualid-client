@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
-import * as openpgp from 'openpgp';
+//import * as openpgp from 'openpgp';
 
 @Component({
   selector: 'app-home',
@@ -76,9 +76,9 @@ export class HomeComponent implements OnInit {
         passphrase: this.registerUser.password
     };
 
-    var keys = await openpgp.generateKey(options);
+    /*var keys = await openpgp.generateKey(options);
     this.registerUser.publicKey = keys.publicKeyArmored;
-    this.registerUser.privateKey = keys.privateKeyArmored;
+    this.registerUser.privateKey = keys.privateKeyArmored;*/
 
     this.userService.registerUser(this.registerUser)
       .subscribe(
